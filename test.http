@@ -1,0 +1,28 @@
+@host=localhost
+@port=4004
+@protocol=http
+
+###POST operation to upload invoice pdf
+
+POST {{protocol}}://{{host}}:{{port}}/odata/v2/media/MediaFile
+Content-Type: application/pdf
+slug: invoice.pdf
+
+< ./myPDF.pdf
+
+###
+POST {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile HTTP/1.1
+Content-Type: application/json
+
+{
+
+}
+
+###
+PUT {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(423d78af-4ebe-4914-ba35-a3157c7826ba)/content HTTP/1.1
+Content-Type: application/pdf
+slug: myPDF.pdf
+
+
+
+< ./myPDF.pdf
