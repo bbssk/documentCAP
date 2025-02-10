@@ -15,11 +15,11 @@ POST {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile HTTP/1.1
 Content-Type: application/json
 
 {
-
+ "ID":"7a6b186b-57fd-4baa-9098-4906b4800275"
 }
 
 ###
-PUT {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(423d78af-4ebe-4914-ba35-a3157c7826ba)/content HTTP/1.1
+PUT {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(7a6b186b-57fd-4baa-9098-4906b4800275)/content HTTP/1.1
 Content-Type: application/pdf
 slug: myPDF.pdf
 
