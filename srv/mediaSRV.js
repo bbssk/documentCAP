@@ -19,19 +19,35 @@ module.exports = cds.service.impl(function () {
             obj.mediaType = req.headers['content-type'];
             obj.url = `/media/MediaFile(${id})/content`;
 
-            const stream = new PassThrough();
-            const chunks = [];
+            // const stream = new PassThrough();
+            // const chunks = [];
 
-            stream.on('data', (chunk) => {
-                chunks.push(chunk);
-            });
+            // stream.on('data', (chunk) => {
+            //     chunks.push(chunk);
+            // });
 
-            stream.on('end', async () => {
-                obj.content = Buffer.concat(chunks).toString();
-                await db.update(MediaFile, id).with(obj);
+            // stream.on('end', async () => {
+            //     obj.content = Buffer.concat(chunks).toString();
+            //     await db.update(MediaFile, id).with(obj);
                 
-            });
-            req.data.content.pipe(stream);
+            // });
+            // req.data.content.pipe(stream);
+            const buffer = await new Promise((resolve, reject) => {
+                const chunks = [];
+                const stream = new PassThrough();
+            
+                
+                  stream.on('data', chunk => chunks.push(chunk))
+                  stream.on('end', () => resolve(Buffer.concat(chunks)))
+                  stream.on('error', reject);
+                  req.data.content.pipe(stream);
+              });
+              console.log(buffer);
+              console.log("----------------------");
+              console.log(Buffer.from(buffer));
+              obj.content= Buffer.from(buffer);
+              const updatedDocumentFile=await db.update(MediaFile, id).with(obj);
+              return updatedDocumentFile;
         }else next();
 
     });

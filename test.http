@@ -35,3 +35,17 @@ Content-Type: application/octet-stream
 GET {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(7a6b186b-57fd-4baa-9098-4906b4800275)/content
 Content-Disposition: 'attachment; filename="myPDF.pdf"'
 
+###
+PUT {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(7a6b186b-57fd-4baa-9098-4906b4800275)/content HTTP/1.1
+Content-Type: image/png
+slug: destination.png
+
+
+
+< ./destination.png
+
+
+###
+GET {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile(7a6b186b-57fd-4baa-9098-4906b4800275)/content
+Content-Disposition: 'attachment; filename="destination.png"'
+
