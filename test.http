@@ -9,6 +9,12 @@ Content-Type: application/pdf
 slug: invoice.pdf
 
 < ./myPDF.pdf
+###
+POST {{protocol}}://{{host}}:{{port}}/odata/v2/media/MediaFile
+Content-Type: image/png
+slug: destination.png
+
+< ./destination.png
 
 ###
 POST {{protocol}}://{{host}}:{{port}}/odata/v4/media/MediaFile HTTP/1.1
