@@ -17,5 +17,15 @@
   "scripts": {
     "start": "cds-serve",
     "deploy-sql": "cds deploy --to  sqlite"
+  },
+  "requires": {
+    "[development]": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db.sqlite"
+        }
+      }
+    }
   }
 }
